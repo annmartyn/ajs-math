@@ -3,6 +3,15 @@
 import Character from './character.js';
 
 class Magi extends Character {
+    MagicAttack(attack, dist = 1, stoned = false) {
+        let percAttack = 100 - (dist - 1) * 10;
+        let calcAttack = Math.floor(attack * (percAttack / 100));
+        if (stoned) {
+            calcAttack -= Math.floor(5 * (Math.log(dist) / Math.log(2)));
+        }
+        return calcAttack;
+    }
+
     get stoned() {
         return this.isStoned;
     }
@@ -13,23 +22,14 @@ class Magi extends Character {
     }
 
     get attack() {
-        return this.calcAttack;
+        return this.MagicAttack(this.baseAttack, this.distance, this.stoned);
     }
 
     set attack(attack) {
         this.baseAttack = attack;
-        this.calcAttack = MagicAttack(attack, this.distance, this.stoned);
     }
 }
 
-function MagicAttack(attack, dist = 1, stoned = false) {
-    let percAttack = 100 - (dist - 1) * 10;
-    let calcAttack = Math.floor(attack * (percAttack / 100));
-    if (stoned) {
-        calcAttack -= Math.floor(5 * (Math.log(dist) / Math.log(2)));
-    }
-    return calcAttack;
-}
 
 export class Magician extends Magi {
     constructor(name, type = 'Magician') {
