@@ -3,7 +3,7 @@
 import Character from './character.js';
 
 class Magi extends Character {
-    MagicAttack(attack, dist = 1, stoned = false) {
+    magicAttack(attack, dist = 1, stoned = false) {
         let percAttack = 100 - (dist - 1) * 10;
         let calcAttack = Math.floor(attack * (percAttack / 100));
         if (stoned) {
