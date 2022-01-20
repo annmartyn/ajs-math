@@ -22,7 +22,7 @@ class Magi extends Character {
     }
 
     get attack() {
-        return this.MagicAttack(this.baseAttack, this.distance, this.stoned);
+        return this.magicAttack(this.baseAttack, this.distance, this.stoned);
     }
 
     set attack(attack) {
